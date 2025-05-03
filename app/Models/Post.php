@@ -25,4 +25,15 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function likedByUsers()
+{
+    return $this->belongsToMany(User::class, 'post_user_like')->withTimestamps();
+}
+
+public function isLikedBy(User $user): bool
+{
+    return $this->likedByUsers->contains($user);
+}
+
 }

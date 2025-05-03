@@ -9,9 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,8 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/projects/{slug}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     
     // Posts
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/dashboard', [PostController::class, 'index'])->middleware(['verified'])->name('dashboard');
+    Route::post('/dashboard', [PostController::class, 'store'])->name('posts.store');
+    Route::post('/posts/{id}/like', [PostController::class, 'toggleLike'])->name('posts.like');
+    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
 require __DIR__ . '/auth.php';

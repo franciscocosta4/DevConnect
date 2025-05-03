@@ -77,7 +77,7 @@
             </svg>
             Editar Projeto
         </>
-        <form method="POST" action="{{ route('projects.destroy', $project->id) }}">
+        <form method="POST" action="{{ route('projects.destroy', $project->slug) }}">
             @csrf
             @method('DELETE')
             <button type="submit" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir este projeto?')">

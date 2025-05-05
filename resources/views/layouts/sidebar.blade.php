@@ -165,12 +165,13 @@
     border-radius: 50%;
     flex-shrink: 0;
 }
-
 .project-title {
     flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap;       /* Impede que o texto quebre em várias linhas */
+    overflow: hidden;          /* Esconde o texto que ultrapassar o container */
+    text-overflow: ellipsis;   /* Adiciona "..." quando o texto é cortado */
+    max-width: 150px;          /* Define uma largura máxima para o título */
+    display: inline-block;     /* Garante que o ellipsis funcione corretamente */
 }
 
 .visibility-icon {

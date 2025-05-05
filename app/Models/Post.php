@@ -23,8 +23,9 @@ class Post extends Model
     // Relacionamento com os comentários
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->latest();
     }
+    
 
     public function likedByUsers()
 {

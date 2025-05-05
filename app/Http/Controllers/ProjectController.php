@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index()
     {
         // Mostrar projetos do utilizador
-        $projects = Auth::user()->projects;
+        $projects = Project::with('user')->get(); // ou apenas os públicos se quiseres filtrar já aqui
         return view('projects.index', compact('projects'));
     }
 

@@ -11,10 +11,19 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     public function index()
-    {
-        $posts = Post::with('user')->latest()->get();
-        return view('dashboard', compact('posts'));
-    }
+{
+    $posts = Post::with([
+        'user',
+        'likedByUsers',
+        'comments.user',           // para mostrar o autor do comentário
+        'comments.children.user',  // para mostrar os filhos e respetivos autores
+    ])
+    ->latest()
+    ->get();
+
+    return view('dashboard', compact('posts'));
+}
+
 
     public function store(Request $request)
     {

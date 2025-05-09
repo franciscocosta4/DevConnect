@@ -18,7 +18,7 @@
                 <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="comment-action-form">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-btn delete-btn">Apagar</button>
+                    <button style="margin-top:15px;" type="submit" class="text-btn delete-btn">Apagar</button>
                 </form>
             @endif
             <button class="text-btn reply-btn" onclick="toggleReplyForm({{ $comment->id }})">Responder</button>

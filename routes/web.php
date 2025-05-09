@@ -3,6 +3,8 @@
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\ProjectController;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
     use App\Http\Controllers\PostController;
     use App\Http\Controllers\CommentController;
 
@@ -19,6 +21,15 @@
         Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
         Route::get('/users/{user:username}', [ProfileController::class, 'public'])->name('users.profile');
 
+        Route::get('download/{filename}', function ($filename) {
+            $path = storage_path('app/private/projects/' . $filename);
+        
+            if (Storage::disk('private')->exists('projects/' . $filename)) {
+                return Response::download($path);
+            } else {
+                abort(404); // Se o ficheiro não existir, retorna um erro 404
+            }
+        })->name('download.project');
 
         Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
         Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');

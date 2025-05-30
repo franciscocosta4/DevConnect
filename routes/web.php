@@ -9,6 +9,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SearchController;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,7 +30,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     
     // Dashboard principal
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-    
+    Route::get('/projects', [SearchController::class, 'index'])->name('projects.index');
     // === ROTAS DE PROJETOS ===
     Route::get('/projects', [AdminController::class, 'projects'])->name('projects');
     Route::get('/projects/create', [AdminController::class, 'createProject'])->name('projects.create');

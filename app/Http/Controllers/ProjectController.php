@@ -9,12 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-        // Mostrar projetos do utilizador
-        $projects = Project::with('user')->get(); // ou apenas os públicos se quiseres filtrar já aqui
-        return view('projects.index', compact('projects'));
+    public function index(Request $request)
+{
+    $search = $request->query('search');
+
+    $query = Project::query()
+        ->where('visibility', 'public')
+        ->with('user');
+
+    if ($search) {
+        $query->where('title', 'like', '%' . $search . '%');
     }
+
+    $projects = $query->get();
+
+    return view('projects.index', compact('projects', 'search'));
+}
+
 
     public function create()
     {

@@ -1,13 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="projects-container">
-        <input type="text" id="search-bar" placeholder="Pesquisar por projetos...">
-        
-        <h2 class="projects-title">Todos os Projetos Públicos</h2>
-        
+<div class="projects-container">
+    <form method="GET" action="{{ route('projects.index') }}">
+        <input
+            type="text"
+            name="search"
+            id="search-bar"
+            placeholder="Pesquisar por projetos..."
+            value="{{ old('search', $search ?? '') }}"
+        >
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    <h2 class="projects-title">Todos os Projetos Públicos</h2>
+
+    @if($projects->isEmpty())
+        <p>Não foram encontrados projetos com esse termo.</p>
+    @else
         <ul class="projects-list">
-            @foreach ($projects->where('visibility', 'public') as $project)
+@foreach ($projects as $project)
                 <li class="project-item">
                     <a href="{{ route('projects.show', $project->slug) }}" class="project-link-page">
                         {{ $project->title }}
@@ -21,13 +33,14 @@
                 <br>
             @endforeach
         </ul>
-    </div>
+    @endif
+</div>
 @endsection
 
 <style>
     /* Projects Page Styles */
     .projects-container {
-        max-width: 800px; /* Reduzi a largura máxima */
+        max-width: 800px;
         margin: 2rem auto;
         padding: 0 1rem;
     }
@@ -40,18 +53,32 @@
     }
 
     #search-bar {
-        width: 100%;
+        width: calc(100% - 110px);
         padding: 0.75rem 1rem;
         border: 1px solid #cbd5e0;
         border-radius: 0.5rem;
-        margin-bottom: 1.5rem;
         font-size: 1rem;
+        margin-right: 10px;
     }
 
-    .search-bar:focus {
-        outline: none;
-        border-color: #4299e1;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+    form {
+        display: flex;
+        margin-bottom: 1.5rem;
+    }
+
+    button[type="submit"] {
+        padding: 0.75rem 1rem;
+        border: none;
+        background-color: #4299e1;
+        color: white;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #1a365d;
     }
 
     .projects-list {
@@ -60,11 +87,11 @@
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 1rem; /* Espaço entre os itens */
+        gap: 1rem;
     }
 
     .project-item {
-        width: 100%; /* Ocupa 100% da largura disponível */
+        width: 100%;
         background-color: white;
         border-radius: 0.5rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -82,7 +109,7 @@
         text-decoration: none;
         font-size: 1.1rem;
         font-weight: 500;
-        display: block; /* Faz o link ocupar toda a largura */
+        display: block;
         margin-bottom: 0.5rem;
     }
 

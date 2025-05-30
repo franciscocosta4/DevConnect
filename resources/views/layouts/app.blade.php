@@ -44,3 +44,8 @@
     </div>
 </body>
 </html>
+<style>
+    html{
+        overflow-x: hidden;
+    }
+</style>

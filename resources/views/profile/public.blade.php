@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="profile-container">
         <!-- Cabeçalho do perfil -->
         <div class="profile-header">
@@ -19,6 +20,20 @@
 
         <!-- Conteúdo -->
         <div class="profile-content">
+
+            <!-- Bio -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h2>Bio</h2>
+                </div>
+
+                    @if($user->bio)
+                        <p class="profile-bio">{{ $user->bio }}</p>
+                    @else
+                        <p class="profile-bio empty">não tem</p>
+                    @endif
+            </div>
+
             <!-- Projetos -->
             <div class="profile-section">
                 <div class="section-header">
@@ -80,7 +95,9 @@
     </div>
 
     <style>
+
         .profile-container {
+            overflow-x: hidden;
             width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
@@ -161,6 +178,29 @@
             font-weight: 600;
             color: #1a365d;
             margin: 0;
+        }
+
+        .profile-bio-box {
+            background-color: #ffffff;
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-bio {
+            margin: 0;
+        }
+
+        .profile-bio.empty {
+            font-style: italic;
+            color: #a0aec0;
         }
 
         .projects-grid {

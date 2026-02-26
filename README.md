@@ -1,6 +1,3 @@
-
-
-```markdown
 # DevConnect – Plataforma Social para Programadores
 
 Aplicação web desenvolvida com **Laravel** e **MySQL** que funciona como uma mini-rede social para programadores — uma combinação conceptual entre GitHub e Twitter, focada na partilha de conteúdo técnico e interacção entre developers.

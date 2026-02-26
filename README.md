@@ -5,6 +5,16 @@ Aplicação web desenvolvida com **Laravel** e **MySQL** que funciona como uma m
 O objectivo do projecto é demonstrar competências de desenvolvimento full-stack com arquitectura MVC, autenticação, base de dados relacional e interface moderna.
 
 ---
+## ScreenShots
+<img width="1757" height="947" alt="image" src="https://github.com/user-attachments/assets/f23bf783-7ae8-481b-b5eb-2458cf811b7d" />
+
+![Captura de ecrã 2026-02-26 101842](https://github.com/user-attachments/assets/69c768a4-c0a5-4fef-bee1-f95c683e745d)
+
+![Captura de ecrã 2026-02-26 102214](https://github.com/user-attachments/assets/b16f8b20-dd94-4feb-83c7-e6bf0038b663)
+
+
+![Captura de ecrã 2026-02-26 101625](https://github.com/user-attachments/assets/af3e17df-97dc-4011-a195-e56bf6cd7c39)
+
 
 ## Funcionalidades
 
